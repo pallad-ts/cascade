@@ -14,14 +14,14 @@
     "prepublishOnly": "npm run compile"
   },
   "peerDependencies": {
+    "@pallad/cascade": "*",
     "@pallad/modules": "^1.0.0",
-    "alpha-dic": "^1.1.4",
-    "@pallad/cascade": "*"
+    "alpha-dic": "^1.1.4"
   },
   "devDependencies": {
+    "@pallad/cascade": "^0.1.0",
     "@pallad/modules": "^1.0.0",
-    "alpha-dic": "^1.1.4",
-    "@pallad/cascade": "*"
+    "alpha-dic": "^1.1.4"
   },
   "author": "Łukasz Kużyński <lukasz.kuzynski@gmail.com> (http://wookieb.pl)",
   "license": "MIT"
