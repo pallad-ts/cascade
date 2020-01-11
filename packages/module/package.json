@@ -1,0 +1,28 @@
+{
+  "name": "@pallad/cascade-module",
+  "version": "0.1.0",
+  "description": "Module for @pallad/cascade",
+  "main": "compiled/index.js",
+  "types": "compiled/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "../../node_modules/.bin/pallad-scripts test",
+    "compile": "../../node_modules/.bin/pallad-scripts compile",
+    "lint": "../../node_modules/.bin/pallad-scripts lint",
+    "prepublishOnly": "npm run compile"
+  },
+  "peerDependencies": {
+    "@pallad/modules": "^1.0.0",
+    "alpha-dic": "^1.1.4",
+    "@pallad/cascade": "*"
+  },
+  "devDependencies": {
+    "@pallad/modules": "^1.0.0",
+    "alpha-dic": "^1.1.4",
+    "@pallad/cascade": "*"
+  },
+  "author": "Łukasz Kużyński <lukasz.kuzynski@gmail.com> (http://wookieb.pl)",
+  "license": "MIT"
+}

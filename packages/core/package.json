@@ -1,0 +1,24 @@
+{
+  "name": "@pallad/cascade",
+  "version": "0.1.0",
+  "description": "Allows to run cascade operations like deletions or updates",
+  "main": "compiled/index.js",
+  "types": "compiled/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "../../node_modules/.bin/pallad-scripts test",
+    "compile": "../../node_modules/.bin/pallad-scripts compile",
+    "lint": "../../node_modules/.bin/pallad-scripts lint",
+    "prepublishOnly": "npm run compile"
+  },
+  "files": [
+    "compiled"
+  ],
+  "author": "Łukasz Kużyński <lukasz.kuzynski@gmail.com> (http://wookieb.pl)",
+  "license": "MIT",
+  "dependencies": {
+    "tslib": "^1.10.0"
+  }
+}
