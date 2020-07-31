@@ -16,12 +16,12 @@
   "peerDependencies": {
     "@pallad/cascade": "*",
     "@pallad/modules": "^1.0.0",
-    "alpha-dic": "^1.1.4"
+    "alpha-dic": "^2"
   },
   "devDependencies": {
     "@pallad/cascade": "^0.1.0",
     "@pallad/modules": "^1.0.0",
-    "alpha-dic": "^1.1.4"
+    "alpha-dic": "^1 || ^2"
   },
   "author": "Łukasz Kużyński <lukasz.kuzynski@gmail.com> (http://wookieb.pl)",
   "license": "MIT"

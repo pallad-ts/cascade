@@ -1,7 +1,13 @@
 export interface Rule<T = any> {
     supports(target: T): boolean;
 
-    run(target: T): void | Promise<void>;
+    /**
+     * Run action on given target and return related targets
+     * @param target
+     */
+    run(target: T): Rule.Result | Promise<Rule.Result>;
+}
 
-    getRelated(target: T): any[];
+export namespace Rule {
+    export type Result = void | any[];
 }
