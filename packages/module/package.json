@@ -1,6 +1,6 @@
 {
   "name": "@pallad/cascade-module",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Module for @pallad/cascade",
   "main": "compiled/index.js",
   "types": "compiled/index.d.ts",
@@ -19,7 +19,7 @@
     "alpha-dic": "^2"
   },
   "devDependencies": {
-    "@pallad/cascade": "^0.2.0",
+    "@pallad/cascade": "^0.2.1",
     "@pallad/modules": "^1.0.0",
     "alpha-dic": "^1 || ^2"
   },
