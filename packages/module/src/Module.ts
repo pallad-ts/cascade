@@ -3,7 +3,7 @@ import {Container, onActivation, reference} from "alpha-dic";
 import {Action} from "@pallad/cascade";
 import {getRulePredicate} from "./actionRuleAnnotation";
 
-export class Module extends _Module<{ context: Container }> {
+export class Module extends _Module<{ container: Container }> {
     constructor(private actionNames: string[]) {
         super('@pallad/cascade-module');
     }
@@ -11,7 +11,7 @@ export class Module extends _Module<{ context: Container }> {
     init(): void {
         this.registerAction(StandardActions.INITIALIZATION, context => {
             for (const actionName of this.actionNames) {
-                context.context.definitionWithConstructor(Module.getServiceNameForAction(actionName), Action)
+                context.container.definitionWithConstructor(Module.getServiceNameForAction(actionName), Action)
                     .annotate(onActivation(async function (this: Container, action: Action) {
                         const rules = await this.getByAnnotation(getRulePredicate(actionName));
                         for (const rule of rules) {
