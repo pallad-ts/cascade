@@ -8,7 +8,7 @@ export class Module extends _Module<{ context: Container }> {
         super('@pallad/cascade-module');
     }
 
-    protected init(): void {
+    init(): void {
         this.registerAction(StandardActions.INITIALIZATION, context => {
             for (const actionName of this.actionNames) {
                 context.context.definitionWithConstructor(Module.getServiceNameForAction(actionName), Action)
