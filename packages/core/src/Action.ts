@@ -10,8 +10,7 @@ export class Action<T = any> {
 
     async run(target: T) {
         for (const rule of this.getRulesForTarget(target)) {
-            await rule.run(target);
-            const relatedTargets = rule.getRelated(target);
+            const relatedTargets = await rule.run(target);
             if (!Array.isArray(relatedTargets)) {
                 continue;
             }
