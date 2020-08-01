@@ -1,6 +1,6 @@
 {
   "name": "@pallad/cascade",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Allows to run cascade operations like deletions or updates",
   "main": "compiled/index.js",
   "types": "compiled/index.d.ts",
