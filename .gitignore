@@ -3,3 +3,4 @@ coverage
 compiled
 
 *.log
+junit.xml

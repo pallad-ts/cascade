@@ -1,17 +1,12 @@
-export function actionRuleAnnotation(actionName: string): Annotation {
-    return {
-        name: NAME,
-        actionName
-    };
-}
+import {createAnnotationFactory} from "alpha-dic";
 
-const NAME = '@pallad/cascade/rule';
+export const actionRuleAnnotation = createAnnotationFactory(
+	'@pallad/cascade/rule',
+	(actionName: string) => ({actionName})
+);
 
-export interface Annotation {
-    name: string,
-    actionName: string;
-}
-
-export function getRulePredicate(actionName: string) {
-    return (a: any) => a && a.name === NAME && a.actionName === actionName;
+export function getRulePredicateForAction(actionName: string) {
+	return actionRuleAnnotation.andPredicate((value: ReturnType<typeof actionRuleAnnotation>) => {
+		return value.actionName === actionName;
+	});
 }

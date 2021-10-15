@@ -1,6 +1,6 @@
 {
   "name": "@pallad/cascade",
-  "version": "0.2.1",
+  "version": "1.0.0",
   "description": "Allows to run cascade operations like deletions or updates",
   "main": "compiled/index.js",
   "types": "compiled/index.d.ts",
@@ -14,11 +14,12 @@
     "prepublishOnly": "npm run compile"
   },
   "files": [
-    "compiled"
+    "compiled",
+    "docs"
   ],
   "author": "Łukasz Kużyński <lukasz.kuzynski@gmail.com> (http://wookieb.pl)",
   "license": "MIT",
-  "dependencies": {
-    "tslib": "^1.10.0"
+  "peerDependencies": {
+    "tslib": "^2"
   }
 }

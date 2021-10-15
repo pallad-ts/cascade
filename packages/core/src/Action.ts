@@ -1,27 +1,45 @@
 import {Rule} from "./Rule";
 
-export class Action<T = any> {
-    private rules: Set<Rule> = new Set();
+function isIterable(target: any): target is Iterable<any> {
+	return target && typeof target[Symbol.iterator] === 'function';
+}
 
-    registerRule(rule: Rule): this {
-        this.rules.add(rule);
-        return this;
-    }
+export class Action<TContext = undefined> {
+	private rules: Set<Rule<any, any>> = new Set();
 
-    async run(target: T) {
-        for (const rule of this.getRulesForTarget(target)) {
-            const relatedTargets = await rule.run(target);
-            if (!Array.isArray(relatedTargets)) {
-                continue;
-            }
-            for (const target of relatedTargets) {
-                await this.run(target);
-            }
-        }
-    }
+	constructor(rules?: Iterable<Rule>) {
+		if (rules && isIterable(rules)) {
+			for (const rule of rules) {
+				this.registerRule(rule);
+			}
+		}
+	}
+	
+	registerRule(rule: Rule): this {
+		this.rules.add(rule);
+		return this;
+	}
 
-    private getRulesForTarget(target: T) {
-        return Array.from(this.rules)
-            .filter(rule => rule.supports(target));
-    }
+	hasRule(rule: Rule): boolean {
+		return this.rules.has(rule);
+	}
+
+	async run(...args: TContext extends undefined ? [unknown] : [unknown, TContext]) {
+		const [target, context] = args;
+		for (const rule of this.getRulesForTarget(target)) {
+			const relatedTargets = await rule.run(...args);
+			if (!isIterable(relatedTargets)) {
+				continue;
+			}
+			for (const target of relatedTargets) {
+				const newArgs = context === undefined ? [target] : [target, context];
+				await this.run(...newArgs as any);
+			}
+		}
+	}
+
+	private getRulesForTarget(target: unknown) {
+		return Array.from(this.rules)
+			.filter(rule => rule.supports(target));
+	}
 }
