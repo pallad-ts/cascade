@@ -1,4 +1,4 @@
-export interface Rule<T = unknown, TContext = undefined> {
+export interface Rule<TContext = undefined> {
 	/**
 	 * Tells if given target is supported by rule
 	 */

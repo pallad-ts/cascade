@@ -1,6 +1,7 @@
 ---
 slug: "/"
 sidebar_position: 1
+description: "What is `cascade`?"
 ---
 
 # Introduction
@@ -17,11 +18,11 @@ entity has anything else to remove as well they might trigger deletion of other 
 * cascade updates of cached views
 * running extra logic on creation of new entries
 * achieving cascade logic between multiple persistence models (key/value database <-> filesystem <-> RDBMS etc)
-* great for apps that tries not to lock to single persistence model
+* great for apps that tries to leverage [polyglot persistence](https://www.dataversity.net/utilizing-multiple-data-stores-data-models-polyglot-persistence-worth/)
 
 ## Features
 
 * 👷 Built with Typescript
-* 📏 Simple but very powerful
+* 📏 Simple but powerful 🔥
 * 🧑‍🤝‍🧑 Context friendly for forwarding extra information (like transaction handle)
 * ❤️ Integration with `@pallad/modules`

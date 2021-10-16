@@ -5,22 +5,22 @@ function isIterable(target: any): target is Iterable<any> {
 }
 
 export class Action<TContext = undefined> {
-	private rules: Set<Rule<any, any>> = new Set();
+	private rules: Set<Rule<TContext>> = new Set();
 
-	constructor(rules?: Iterable<Rule>) {
+	constructor(rules?: Iterable<Rule<TContext>>) {
 		if (rules && isIterable(rules)) {
 			for (const rule of rules) {
 				this.registerRule(rule);
 			}
 		}
 	}
-	
-	registerRule(rule: Rule): this {
+
+	registerRule(rule: Rule<TContext>): this {
 		this.rules.add(rule);
 		return this;
 	}
 
-	hasRule(rule: Rule): boolean {
+	hasRule(rule: Rule<TContext>): boolean {
 		return this.rules.has(rule);
 	}
 
