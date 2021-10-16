@@ -1,6 +1,6 @@
 {
   "name": "@pallad/cascade-module",
-  "version": "1.0.0",
+  "version": "0.9.0",
   "description": "Pallad's module for @pallad/cascade",
   "main": "compiled/index.js",
   "types": "compiled/index.d.ts",
