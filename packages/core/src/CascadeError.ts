@@ -1,3 +1,6 @@
+/**
+ * @internal
+ */
 export class CascadeError extends Error {
 	constructor(message: string) {
 		super();
