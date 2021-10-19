@@ -1,5 +1,5 @@
 <div align="center">
-<h1>Cascade 🦤</h1>
+<h1>Cascade 💣 ➡️ 💥 ➡️ 💥</h1>
 
 <p>Run cascade actions from your code instead database</p>
 </div>
@@ -10,8 +10,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 ---
 
-`@pallad/cascade` is a library to run cascade actions on targets (might be anything distinguishable for you). Every
-action might return an iterable (`Set`, `array` or etc) of other targets on which the same action needs to be ran.
+`@pallad/cascade` is a library to run cascade actions on entities.
 
 For example action `delete` on an `Article` entity containing images triggers removal of `Image` entities. If `Image`
 entity has anything else to remove as well they might trigger deletion of other entities, and so on and so forth.
@@ -31,26 +30,21 @@ entity has anything else to remove as well they might trigger deletion of other 
 * 🧑‍🤝‍🧑 Context friendly for forwarding extra information (like transaction handle)
 * ❤️ Integration with `@pallad/modules`
 
-
 # Installation
-```
+```shell
 npm install @pallad/cascade
-// or
-yarn install @pallad/cascade
 ```
 
 ## Modules
 If you already use `alpha-dic` and would like to integrate with `@pallad/modules` install `@pallad/cascade-module`
 
-```
+```shell
 npm install @pallad/cascade-module
-// or
-yarn install @pallad/cascade-module
 ```
 
 # Why should I use it?
 
-If you can handle all cascade actions within a database then great and you probably don't need `@pallad/cascade` at all :)
+If you can (and want to) handle all cascade actions within a database then great and you probably don't need `@pallad/cascade` at all :)
 
 However it is still a great tool for
 * databases that does not support cascade actions like `DynamoDB`, `MongoDB`, `Redis` etc.
@@ -66,7 +60,7 @@ actions.
 
 ## Rule
 
-Rule is an object that performs an action on a target. Rule decides whether is able to handle given target, if not
+Rule performs an action on a target. It decides whether is able to handle given target, if not
 then `Action` will not ask it to handle it.
 
 ```typescript
@@ -78,7 +72,8 @@ const deleteImageRule: Rule = {
 	},
 	run(target: Image): Rule.Result | Promise<Rule.Result> {
 		// perform image deletion
-		// at this stage we're sure that target is an instanceof Image since otherwise it would not be called
+		// at this stage we're sure that target is an instanceof Image
+		// since otherwise it would not be called
 	}
 }
 ```
@@ -323,5 +318,5 @@ knex.transaction((trx) => {
 # Tips
 
 ## How to distinguish targets if my entities are just pure javascript objects (POJO)?
-You have to wrap them within extra object to indicate its type or use (`@pallad/entity-ref`)[https://github.com/pallad-ts/entity-ref]
+You have to wrap them within extra object to indicate its type or use [`@pallad/entity-ref`](https://github.com/pallad-ts/entity-ref)
 
