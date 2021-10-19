@@ -1,11 +1,10 @@
-# Cascade
-
 <p align="center">
-	[![CircleCI](https://circleci.com/gh/pallad-ts/cascade/tree/master.svg?style=svg)](https://circleci.com/gh/pallad-ts/cascade/tree/master)
-	[![npm version](https://badge.fury.io/js/@pallad%2Fcascade.svg)](https://badge.fury.io/js/@pallad%2Fcascade)
-	[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+	<h1>Cascade</h1>
+	<img src="https://circleci.com/gh/pallad-ts/cascade/tree/master.svg?style=svg" />
+	<img src="https://badge.fury.io/js/@pallad%2Fcascade.svg" />
+	<img src="https://img.shields.io/badge/License-MIT-green.svg"/>
 </p>
 
-Monorepo for @pallad/cascade related code.
+Monorepo for `@pallad/cascade` related code.
 
 [Documentation](./packages/core/)
