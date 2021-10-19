@@ -10,7 +10,7 @@ jobs:
       tag: "14.18"
     steps:
       - checkout
-      - run: "npm ci && lerna bootstrap"
+      - run: "npm ci && ./node_modules/.bin/lerna bootstrap"
       - run:
           command: ./node_modules/.bin/lerna run compile
           name: compilation
