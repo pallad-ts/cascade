@@ -21,7 +21,8 @@ entity has anything else to remove as well they might trigger deletion of other 
 * cascade updates of cached views
 * running extra logic on creation of new entries
 * achieving cascade logic between multiple persistence models (key/value database <-> filesystem <-> RDBMS etc)
-* great for apps that tries to leverage [polyglot persistence](https://www.dataversity.net/utilizing-multiple-data-stores-data-models-polyglot-persistence-worth/)
+* great for apps that tries to
+  leverage [polyglot persistence](https://www.dataversity.net/utilizing-multiple-data-stores-data-models-polyglot-persistence-worth/)
 
 # Features
 
@@ -35,11 +36,13 @@ entity has anything else to remove as well they might trigger deletion of other 
 Join our [discord server](https://discord.gg/Pct8k5DzWr)
 
 # Installation
+
 ```shell
 npm install @pallad/cascade
 ```
 
 ## Modules
+
 If you already use `alpha-dic` and would like to integrate with `@pallad/modules` install `@pallad/cascade-module`
 
 ```shell
@@ -48,14 +51,17 @@ npm install @pallad/cascade-module
 
 # Why should I use it?
 
-If you can (and want to) handle all cascade actions within a database then great and you probably don't need `@pallad/cascade` at all :)
+If you can (and want to) handle all cascade actions within a database then great and you probably don't
+need `@pallad/cascade` at all :)
 
 However it is still a great tool for
+
 * databases that does not support cascade actions like `DynamoDB`, `MongoDB`, `Redis` etc.
 * cascade updates of cached views
 * running extra logic on creation of new entries
 * handling cascade multiple persistence modesl (key/value database <-> filesystem <-> RDBMS etc)
-* apps that tries to leverage [polyglot persistence](https://www.dataversity.net/utilizing-multiple-data-stores-data-models-polyglot-persistence-worth/)
+* apps that tries to
+  leverage [polyglot persistence](https://www.dataversity.net/utilizing-multiple-data-stores-data-models-polyglot-persistence-worth/)
 
 # Concepts
 
@@ -64,21 +70,21 @@ actions.
 
 ## Rule
 
-Rule performs an action on a target. It decides whether is able to handle given target, if not
-then `Action` will not ask it to handle it.
+Rule performs an action on a target. It decides whether is able to handle given target, if not then `Action` will not
+ask it to handle it.
 
 ```typescript
 import {Rule} from '@pallad/cascade';
 
 const deleteImageRule: Rule = {
-	supports(target) {
-		return target instanceof Image;
-	},
-	run(target: Image): Rule.Result | Promise<Rule.Result> {
-		// perform image deletion
-		// at this stage we're sure that target is an instanceof Image
-		// since otherwise it would not be called
-	}
+  supports(target) {
+    return target instanceof Image;
+  },
+  run(target: Image): Rule.Result | Promise<Rule.Result> {
+    // perform image deletion
+    // at this stage we're sure that target is an instanceof Image
+    // since otherwise it would not be called
+  }
 }
 ```
 
@@ -104,43 +110,43 @@ Just aggregates all actions in one place.
 import {Rule} from '@pallad/cascade';
 
 class Article {
-	id!: string;
-	images!: Image[];
+  id!: string;
+  images!: Image[];
 }
 
 class Image {
-	id!: string;
+  id!: string;
 }
 
 const deleteArticleRule: Rule = {
-	supports(target) {
-		return target instanceof Article;
-	},
-	run(target: Article) {
-		console.log('Removing article', target.id);
+  supports(target) {
+    return target instanceof Article;
+  },
+  run(target: Article) {
+    console.log('Removing article', target.id);
 
-		return target.images;
-	}
+    return target.images;
+  }
 }
 const deleteImageRule: Rule = {
-	supports(target) {
-		return target instanceof Image;
-	},
-	run(target: Image) {
-		console.log('Removing image', target.id);
-	}
+  supports(target) {
+    return target instanceof Image;
+  },
+  run(target: Image) {
+    console.log('Removing image', target.id);
+  }
 }
 const deleteAction = new Action([
-	deleteArticleRule,
-	deleteImageRule
+  deleteArticleRule,
+  deleteImageRule
 ]);
 
 const article = Object.assign(new Article, {
-	id: 'a1',
-	images: [
-		Object.assign(new Image(), {id: 'i1'}),
-		Object.assign(new Image(), {id: 'i2'}),
-	]
+  id: 'a1',
+  images: [
+    Object.assign(new Image(), {id: 'i1'}),
+    Object.assign(new Image(), {id: 'i2'}),
+  ]
 });
 deleteAction.run(article);
 
@@ -163,81 +169,81 @@ A little bit more advanced with more entity types and articles counter invalidat
 import {Rule, Action} from '@pallad/cascade';
 
 class Article {
-	id!: string;
-	images!: Image[];
+  id!: string;
+  images!: Image[];
 }
 
 class Image {
-	id!: string;
+  id!: string;
 }
 
 class Stash {
-	id!: string;
-	entries!: Article[];
+  id!: string;
+  entries!: Article[];
 }
 
 const deleteArticleRule: Rule = {
-	supports(target) {
-		return target instanceof Article;
-	},
-	run(target: Article) {
-		console.log('Removing article', target.id);
-		return target.images;
-	}
+  supports(target) {
+    return target instanceof Article;
+  },
+  run(target: Article) {
+    console.log('Removing article', target.id);
+    return target.images;
+  }
 }
 const deleteImageRule: Rule = {
-	supports(target) {
-		return target instanceof Image;
-	},
-	run(target: Image) {
-		console.log('Removing image', target.id);
-	}
+  supports(target) {
+    return target instanceof Image;
+  },
+  run(target: Image) {
+    console.log('Removing image', target.id);
+  }
 }
 
 const deleteStashRule: Rule = {
-	supports(target) {
-		return target instanceof Stash;
-	},
-	run(target: Stash) {
-		console.log('Removing stash', target.id);
-		return target.entries;
-	}
+  supports(target) {
+    return target instanceof Stash;
+  },
+  run(target: Stash) {
+    console.log('Removing stash', target.id);
+    return target.entries;
+  }
 }
 
 const updateArticlesCounterRule: Rule = {
-	supports(target) {
-		return target instanceof Article;
-	},
-	run(target: Article) {
-		console.log('Updating articles counter of', target.id);
-	}
+  supports(target) {
+    return target instanceof Article;
+  },
+  run(target: Article) {
+    console.log('Updating articles counter of', target.id);
+  }
 }
 const deleteAction = new Action([
-	deleteArticleRule,
-	deleteImageRule,
-	deleteStashRule,
-	updateArticlesCounterRule,
+  deleteArticleRule,
+  deleteImageRule,
+  deleteStashRule,
+  updateArticlesCounterRule,
 ]);
 
 const article1 = Object.assign(new Article, {
-	id: 'a1',
-	images: [
-		Object.assign(new Image(), {id: 'i1'}),
-		Object.assign(new Image(), {id: 'i2'}),
-	]
+  id: 'a1',
+  images: [
+    Object.assign(new Image(), {id: 'i1'}),
+    Object.assign(new Image(), {id: 'i2'}),
+  ]
 });
 
 const article2 = Object.assign(new Article, {
-	id: 'a1',
-	images: [
-		Object.assign(new Image(), {id: 'i3'}),
-		Object.assign(new Image(), {id: 'i4'}),
-	]
+  id: 'a1',
+  images: [
+    Object.assign(new Image(), {id: 'i3'}),
+    Object.assign(new Image(), {id: 'i4'}),
+  ]
 });
 
 const stash = Object.assign(new Stash, {
-	id: 's1',
-	entries: [article1, article2]
+  id: 's1',
+  entries: [article1, article2]
 });
 
 deleteAction.run(stash);
@@ -260,58 +266,58 @@ import {Rule, Action} from '@pallad/cascade';
 import {Knex} from 'knex';
 
 interface DeleteActionContext {
-	transaction: Knex.Transaction;
+  transaction: Knex.Transaction;
 }
 
 class Article {
-	id!: string;
-	images!: Image[];
+  id!: string;
+  images!: Image[];
 }
 
 class Image {
-	id!: string;
+  id!: string;
 }
 
 const deleteArticleRule: Rule<DeleteActionContext> = {
-	supports(target) {
-		return target instanceof Article;
-	},
-	run(target: Article, context) {
-		console.log('Removing article', target.id);
-		// now you 
-		context.transaction('articles').delete().where('id', target.id);
-		return target.images;
-	}
+  supports(target) {
+    return target instanceof Article;
+  },
+  run(target: Article, context) {
+    console.log('Removing article', target.id);
+    // now you 
+    context.transaction('articles').delete().where('id', target.id);
+    return target.images;
+  }
 }
 const deleteImageRule: Rule<DeleteActionContext> = {
-	supports(target) {
-		return target instanceof Image;
-	},
-	run(target: Image, context) {
-		console.log('Removing image', target.id);
-		context.transaction('images').delete().where('id', target.id);
-	}
+  supports(target) {
+    return target instanceof Image;
+  },
+  run(target: Image, context) {
+    console.log('Removing image', target.id);
+    context.transaction('images').delete().where('id', target.id);
+  }
 }
 
 const deleteAction = new Action<DeleteActionContext>([
-	deleteArticleRule,
-	deleteImageRule,
+  deleteArticleRule,
+  deleteImageRule,
 ]);
 
 const article = Object.assign(new Article, {
-	id: 'a1',
-	images: [
-		Object.assign(new Image(), {id: 'i1'}),
-		Object.assign(new Image(), {id: 'i2'}),
-	]
+  id: 'a1',
+  images: [
+    Object.assign(new Image(), {id: 'i1'}),
+    Object.assign(new Image(), {id: 'i2'}),
+  ]
 });
 
 const transaction = knex.transaction()
 
 knex.transaction((trx) => {
-	return deleteAction.run(article, {
-		transaction: trx
-	});
+  return deleteAction.run(article, {
+    transaction: trx
+  });
 });
 
 // Removing article a1
@@ -322,5 +328,7 @@ knex.transaction((trx) => {
 # Tips
 
 ## How to distinguish targets if my entities are just pure javascript objects (POJO)?
-You have to wrap them within extra object to indicate its type or use [`@pallad/entity-ref`](https://github.com/pallad-ts/entity-ref)
+
+You have to wrap them within extra object to indicate its type or
+use [`@pallad/entity-ref`](https://github.com/pallad-ts/entity-ref)
 
