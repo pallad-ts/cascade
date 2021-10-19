@@ -30,6 +30,10 @@ entity has anything else to remove as well they might trigger deletion of other 
 * 🧑‍🤝‍🧑 Context friendly for forwarding extra information (like transaction handle)
 * ❤️ Integration with `@pallad/modules`
 
+# Community
+
+Join our [discord server](https://discord.gg/Pct8k5DzWr)
+
 # Installation
 ```shell
 npm install @pallad/cascade
