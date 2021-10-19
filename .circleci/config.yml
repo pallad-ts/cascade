@@ -1,0 +1,23 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@4.7
+
+jobs:
+  main_job:
+    executor:
+      name: node/default
+      tag: "14.18"
+    steps:
+      - checkout
+      - run: npm ci
+      - run: lerna run lint
+      - run: lerna run test
+      - store_test_results:
+          path: ./test_results
+
+
+workflows:
+  main:
+    jobs:
+      - main_job

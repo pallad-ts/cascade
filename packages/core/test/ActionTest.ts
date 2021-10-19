@@ -129,6 +129,15 @@ describe('Action', () => {
 			await timer.tickAsync(1000);
 			expect(isFinished).toBe(true);
 		});
+
+		it('fails if there are not rules registered for target', () => {
+			const action = new Action();
+			const target = {foo: 'bar'};
+
+			return expect(action.run(target))
+				.rejects
+				.toThrowErrorMatchingSnapshot();
+		});
 	});
 
 	describe('calling in cascade', () => {

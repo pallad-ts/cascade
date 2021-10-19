@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Action running rules fails if there are not rules registered for target 1`] = `"No rules registered for target: {\\"foo\\":\\"bar\\"}"`;

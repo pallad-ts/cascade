@@ -1,4 +1,5 @@
 import {Rule} from "./Rule";
+import {CascadeError} from './CascadeError';
 
 function isIterable(target: any): target is Iterable<any> {
 	return target && typeof target[Symbol.iterator] === 'function';
@@ -46,7 +47,11 @@ export class Action<TContext = undefined> {
 	 */
 	async run(...args: TContext extends undefined ? [unknown] : [unknown, TContext]) {
 		const [target, context] = args;
-		for (const rule of this.getRulesForTarget(target)) {
+		const rulesForTarget = this.getRulesForTarget(target);
+		if (rulesForTarget.length === 0) {
+			throw new CascadeError(`No rules registered for target: ${JSON.stringify(target)}`);
+		}
+		for (const rule of rulesForTarget) {
 			const relatedTargets = await rule.run(...args);
 			if (!isIterable(relatedTargets)) {
 				continue;

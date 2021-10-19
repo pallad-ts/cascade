@@ -1,9 +1,8 @@
 import {createStandard, Service} from "alpha-dic";
 import {Engine, StandardActions} from "@pallad/modules";
-import {Module} from "@src/Module";
-import {InjectManager} from "../compiled/InjectManager";
 import {Manager} from "@pallad/cascade";
 import {setupEngine} from "./fixtures/setupEngine";
+import {InjectManager} from '@src/InjectManager';
 
 describe('InjectManager', () => {
 	it('should inject instance of manager', async () => {

@@ -1,5 +1,5 @@
 import {StandardActions} from "@pallad/modules";
-import {managerReference} from "../compiled/references";
+import {managerReference} from "@src/references";
 import {Manager} from "@pallad/cascade";
 import {setupEngine} from "./fixtures/setupEngine";
 
