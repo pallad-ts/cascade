@@ -8,4 +8,4 @@
 
 `@pallad/cascade-module` that integrates `@pallad/cascade` with [`@pallad/modules`](https://github.com/pallad-ts/modules)
 
-Documentation will be added later.
+Documentation will be added later but for now please go to [`@pallad/cascade` documentation](https://github.com/pallad-ts/cascade/tree/master/packages/core)
